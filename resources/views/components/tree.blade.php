@@ -8,13 +8,13 @@
 
     echo "<ul>";
 foreach ($categories as $category) {
-    echo "<li>" . $category->name;
+    echo "<li><a href='".route('get-one-category', $category->id)."'>" . $category->name . "</a>";
     tree($category->id);
     echo "</li>";
 }
     echo "</ul>";
 
 }
-tree(null);
+tree($catId??null);
 
 
