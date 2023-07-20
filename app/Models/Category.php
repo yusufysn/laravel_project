@@ -10,4 +10,7 @@ class Category extends Model
     use HasFactory;
     public $timestamps=false;
 
+    public function properties(){
+        return $this->hasMany(Property::class,'category_id','id');
+    }
 }

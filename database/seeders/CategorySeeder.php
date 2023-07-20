@@ -13,16 +13,16 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-       DB::table('categories')->insert([
+        DB::table('categories')->insert([
             ['name' => 'Giyim'],
             ['name' => 'Elektronik'],
             ['name' => 'Ev Dekorasyon'],
-       ]);
-       DB::table('categories')->insert([
-           ['name' => 'Erkek Giyim', 'category_id' => 1],
+        ]);
+        DB::table('categories')->insert([
+            ['name' => 'Erkek Giyim', 'category_id' => 1],
             ['name' => 'Kadın Giyim', 'category_id' => 1],
-           ['name' => 'Çocuk Giyim', 'category_id' => 1],
-           ['name' => 'Bilgisayar', 'category_id' => 2],
+            ['name' => 'Çocuk Giyim', 'category_id' => 1],
+            ['name' => 'Bilgisayar', 'category_id' => 2],
             ['name' => 'Cep Telefonu', 'category_id' => 2],
             ['name' => 'Saat', 'category_id' => 2],
             ['name' => 'Vazolar', 'category_id' => 3],

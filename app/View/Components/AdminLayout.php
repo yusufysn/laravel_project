@@ -19,7 +19,6 @@ class AdminLayout extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    /* geriye değer döndürme  view|Clourse|string]   */
     public function render(): View|Closure|string
     {
         return view('layout.admin');
