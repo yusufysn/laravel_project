@@ -1,16 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
-
-Route::get('/',[AdminController::class,'Dashboard'])->name('dashboard');
-Route::get('/dashboard',[AdminController::class,'Dashboard'])->name('dashboard');
+use App\Http\Controllers\Frontend\PageHomeController;
+use App\Http\Controllers\Frontend\PageController;
+use App\Http\Controllers\AjaxController;
 
 
-Route::group(['prefix'=>'/categories'],function(){
-    Route::get('/',[CategoryController::class,'GetCategories'])->name('categories');
-    Route::post('/',[CategoryController::class,'CreateCategory'])->name('create-category');
-    Route::get('/{category_id}',[CategoryController::class,'GetOneCategory'])->name("get-one-category");
-    Route::delete('/{category_id}',[CategoryController::class,'DeleteCategory'])->name("delete-category");
-    Route::put('/{category_id}',[CategoryController::class,'UpdateCategory'])->name('update-category');});
+
+Route::group(['middleware'=>'sitesetting'], function(){
+    Route::get('/', [PageHomeController::class, 'index'])->name('anasayfa');
+
+    Route::get('/contact', [PageController::class, 'contact'])->name('iletisim');
+    Route::post('/contact/save', [AjaxController::class, 'iletisimkaydet'])->name('iletisim.kaydet');
+
+    Route::get('/products', [PageController::class, 'product'])->name('product');
+    Route::get('/product/{slug}', [PageController::class, 'productDetail'])->name('productDetail');
+});

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductSeeder extends Seeder
 {
@@ -13,22 +13,60 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('products')->insert([
-            ['name'=>'slim pantolon','detail'=>'asmfnsadkfnsa','price'=>250,'amount'=>200,'category_id'=>4],
-            ['name'=>'rahat pantolon','detail'=>'ssdffg','price'=>300,'amount'=>300,'category_id'=>4],
+        Product::create([
+            'name'=>'Urun1',
+            'slug'=>'urun1',
+            'image'=>'assets/img/product/fashion-colorful/1.jpg',
+            'content'=>'ürün çok güzel',
+            'short_text'=>'kisabilgi',
+            'price'=>334,
+            'size'=>'Small',
+            'color'=>'Beyaz',
+            'amount'=>10,
+            'status'=>'1',
+            'category_id'=>1,
+        ]);
 
-            ['name'=>'slim pantolon','detail'=>'asmfnsadkfnsa','price'=>123,'amount'=>232,'category_id'=>5],
-            ['name'=>'rahat pantolon','detail'=>'ssdffg','price'=>500,'amount'=>76,'category_id'=>5],
+        Product::create([
+            'name'=>'Urun2',
+            'slug'=>'urun2',
+            'image'=>'assets/img/product/fashion-colorful/2.jpg',
+            'content'=>'ürün açıklama',
+            'short_text'=>'kisabilgi',
+            'price'=>100,
+            'size'=>'Large',
+            'color'=>'Siyah',
+            'amount'=>5,
+            'status'=>'1',
+            'category_id'=>2,
+        ]);
 
-            ['name'=>'kısa pantolon','detail'=>'cdfsdfg','price'=>345,'amount'=>234,'category_id'=>6],
-            ['name'=>'uzun pantolon','detail'=>'zxrtjfgh','price'=>123,'amount'=>778,'category_id'=>6],
+        Product::create([
+            'name'=>'Urun3',
+            'slug'=>'urun3',
+            'image'=>'assets/img/product/fashion-colorful/3.jpg',
+            'content'=>'ürün açıklama',
+            'short_text'=>'kisabilgi',
+            'price'=>200,
+            'size'=>'Medium',
+            'color'=>'Sarı',
+            'amount'=>4,
+            'status'=>'1',
+            'category_id'=>3,
+        ]);
 
-
-            ['name'=>'Lenova mas ustu pc','detail'=>'dfsdfg','price'=>10000,'amount'=>33,'category_id'=>7],
-            ['name'=>'Samsung telefon','detail'=>'sdasdf','price'=>40000,'amount'=>778,'category_id'=>8],
-
-            ['name'=>'100*200 cm tablo','detail'=>'sdfsasdf','price'=>2222,'amount'=>66,'category_id'=>11],
-
+        Product::create([
+            'name'=>'Urun4',
+            'slug'=>'urun4',
+            'image'=>'assets/img/product/fashion-colorful/4.jpg',
+            'content'=>'ürün açıklama',
+            'short_text'=>'kisabilgi',
+            'price'=>200,
+            'size'=>'Large',
+            'color'=>'Siyah',
+            'amount'=>4,
+            'status'=>'1',
+            'category_id'=>4,
         ]);
     }
 }

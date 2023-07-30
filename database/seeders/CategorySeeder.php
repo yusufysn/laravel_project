@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -13,27 +13,44 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            ['name' => 'Giyim'],
-            ['name' => 'Elektronik'],
-            ['name' => 'Ev Dekorasyon'],
-        ]);
-        DB::table('categories')->insert([
-            ['name' => 'Erkek Giyim', 'category_id' => 1],
-            ['name' => 'Kadın Giyim', 'category_id' => 1],
-            ['name' => 'Çocuk Giyim', 'category_id' => 1],
-            ['name' => 'Bilgisayar', 'category_id' => 2],
-            ['name' => 'Cep Telefonu', 'category_id' => 2],
-            ['name' => 'Saat', 'category_id' => 2],
-            ['name' => 'Vazolar', 'category_id' => 3],
-            ['name' => 'Tablolar', 'category_id' => 3],
-            ['name' => 'Koltuk', 'category_id' => 3],
-        ]);
-                DB::table('categories')->insert([
-            ['name' => 'Pantolon', 'category_id' => 4],
-            ['name' => 'Gömlek', 'category_id' => 4],
-
+        $erkek = Category::create([
+            'image'=>null,
+            'thumbnail'=>null,
+            'name'=>'Erkek',
+            'slug'=>'erkek',
+            'content'=>'Erkek Giyim',
+            'cat_ust'=>null,
+            'status'=>'1',
         ]);
 
+        Category::create([
+            'image'=>null,
+            'thumbnail'=>null,
+            'name'=>'Pantolon',
+            'slug'=>'erkek',
+            'content'=>'Erkek Pantolonu',
+            'cat_ust'=>$erkek->id,
+            'status'=>'1',
+        ]);
+
+        Category::create([
+            'image'=>null,
+            'thumbnail'=>null,
+            'name'=>'Kadın',
+            'slug'=>'kadın',
+            'content'=>'Kadın Giyim',
+            'cat_ust'=>null,
+            'status'=>'1',
+        ]);
+
+        Category::create([
+            'image'=>null,
+            'thumbnail'=>null,
+            'name'=>'Cocuk',
+            'slug'=>'cocuk',
+            'content'=>'Cocuk Giyim',
+            'cat_ust'=>null,
+            'status'=>'1',
+        ]);
     }
 }
