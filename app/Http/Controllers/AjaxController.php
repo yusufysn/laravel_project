@@ -30,6 +30,6 @@ class AjaxController extends Controller
 
         $sonkaydedilen = Contact::create($newdata);
 
-        return back()->withSuccess(['Başarıyla Gönderildi']);
+        return back()->withSuccess('Başarıyla Gönderildi');
     }
 }

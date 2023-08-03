@@ -18,8 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->text('content')->nullable();
-            $table->integer('cat_ust')->nullable();
+            $table->unsignedBigInteger('cat_ust')->nullable();
             $table->enum('status', ['0', '1'])->default('1');
+
+            $table->foreign('cat_ust')->on('categories')->references('id')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

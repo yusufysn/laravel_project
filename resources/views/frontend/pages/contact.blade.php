@@ -52,7 +52,7 @@
                                 <div class="col-md-6">
                                     <div class="contact-input-style mb-30">
                                         <label>Telephone</label>
-                                        <input name="telephone" required="" type="text">
+                                        <input name="phone" required="" type="text">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

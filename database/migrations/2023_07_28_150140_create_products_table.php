@@ -24,6 +24,9 @@ return new class extends Migration
             $table->integer('amount')->nullable();
             $table->enum('status',['0', '1'])->default('0');
             $table->unsignedBigInteger('category_id');
+
+            $table->foreign('category_id')->on('categories')->references('id')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
