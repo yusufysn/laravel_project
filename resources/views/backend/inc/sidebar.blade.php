@@ -22,7 +22,15 @@
                         <li><a href="{{route('category.create')}}">Kategori Ekle</a></li>
                     </ul>
                 </li>
-                
+
+                <li><a class="sidebar-sub-toggle"><i class="ti-layout-grid2-alt"></i> Ürünler <span
+                            class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="{{route('product.index')}}">Ürünler</a></li>
+                        <li><a href="{{route('product.create')}}">Ürün Ekle</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="{{route('contact.index')}}"><i class="ti-email"></i> Mesajlar</a></li>
 
 

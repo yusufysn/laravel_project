@@ -21,8 +21,8 @@
                                 <div class="product-details-large tab-content">
                                     <div class="tab-pane active show fade" id="pro-details1" role="tabpanel">
                                         <div class="easyzoom easyzoom--overlay">
-                                            <a href="{{asset('assets/img/product-details/bl1.jpg')}}">
-                                                <img src="{{asset('assets/img/product-details/l1.jpg')}}" alt="">
+                                            <a href="{{asset('assets/img/product-details/bl2.jpg')}}">
+                                                <img src="{{asset('img/product/'.'/'.$product->image)}}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -84,38 +84,43 @@
                                 <span>${{number_format($product->price, 2)}}</span>
                             </div>
                             <p>{{$product->content}}</p>
+                            <form id="urunform" action="{{route('sepet.ekle')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
                             <div class="quick-view-select">
                                 <div class="select-option-part">
                                     <label>Size*</label>
-                                    <select class="select">
+                                    <select name='size' class="select">
                                         <option value="">- Please Select -</option>
-                                        <option value="">xl</option>
-                                        <option value="">ml</option>
-                                        <option value="">m</option>
-                                        <option value="">sl</option>
+                                        <option value="XL">XL</option>
+                                        <option value="L">L</option>
+                                        <option value="M">M</option>
+                                        <option value="S">S</option>
+                                        <option value="XS">XS</option>
                                     </select>
                                 </div>
                                 <div class="select-option-part">
                                     <label>Color*</label>
-                                    <select class="select">
+                                    <select name='color' class="select">
                                         <option value="">- Please Select -</option>
-                                        <option value="">orange</option>
-                                        <option value="">pink</option>
-                                        <option value="">yellow</option>
+                                        <option value="orange">orange</option>
+                                        <option value="pink">pink</option>
+                                        <option value="yellow">yellow</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="quickview-plus-minus">
                                 <div class="cart-plus-minus">
-                                    <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                    <input type="text" value="01" name="qty" class="cart-plus-minus-box">
                                 </div>
                                 <div class="quickview-btn-cart">
-                                    <a class="btn-hover-black" href="#">add to cart</a>
+                                    <a class="btn-hover-black" href="javascript:$('#urunform').submit();">add to cart</a>
                                 </div>
                                 <div class="quickview-btn-wishlist">
                                     <a class="btn-hover" href="#"><i class="pe-7s-like"></i></a>
                                 </div>
                             </div>
+                            </form>
                             <div class="product-details-cati-tag mt-35">
                                 <ul>
                                     <li class="categories-title">Categories :</li>

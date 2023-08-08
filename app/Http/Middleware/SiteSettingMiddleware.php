@@ -20,7 +20,13 @@ class SiteSettingMiddleware
         $settings = SiteSetting::pluck('data', 'name',)->toArray();
         $categories = Category::where('status', '1')->withCount('items')->get();
 
-        view()->share(['settings' => $settings, 'categories' => $categories]);
+        $cartItem = session('cart', []);
+        $totalPrice = 0;
+        foreach($cartItem as $cart){
+            $totalPrice += $cart['price'] * $cart['qty'];
+        }
+
+        view()->share(['settings' => $settings, 'categories' => $categories, 'cartItem'=>$cartItem, 'totalPrice'=>$totalPrice]);
 
         return $next($request,);
     }

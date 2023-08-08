@@ -7,12 +7,14 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductsController;
+
 use App\Http\Controllers\Frontend\PageHomeController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +70,10 @@ Route::group(['middleware'=>'sitesetting'], function(){
     Route::get('/products', [PageController::class, 'product'])->name('product');
     Route::get('/product/{slug}', [PageController::class, 'productDetail'])->name('productDetail');
 
-
+    Route::get('/cart', [CartController::class, 'index'])->name('sepet');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('sepet.ekle');
+    Route::patch('/cart/update', [CartController::class, 'update'])->name('sepet.update');
+    Route::delete('/cart/remove', [CartController::class, 'remove'])->name('sepet.sil');
 });
 
 Route::prefix('panel')->middleware(['auth','sitesetting','role:admin',])->group(function () {
@@ -82,6 +87,9 @@ Route::prefix('panel')->middleware(['auth','sitesetting','role:admin',])->group(
 
     Route::resource('/category', CategoryController::class)->except('destroy');
     Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+    Route::resource('/product', ProductsController::class)->except('destroy');
+    Route::delete('/product/{id}', [ProductsController::class, 'destroy'])->name('product.destroy');
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('/contact/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');

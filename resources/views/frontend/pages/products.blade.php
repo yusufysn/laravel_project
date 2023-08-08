@@ -213,19 +213,29 @@
                                                 <div class="product-wrapper mb-30">
                                                     <div class="product-img">
                                                         <a href="{{route('productDetail',$product->slug)}}">
-                                                            <img src="{{$product->image}}" alt="">
+                                                            <img src="{{asset('img/product/').'/'.$product->image}}" alt="">
                                                         </a>
                                                         <span>hot</span>
                                                         <div class="product-action">
-                                                            <a class="animate-left" title="Wishlist" href="#">
-                                                                <i class="pe-7s-like"></i>
-                                                            </a>
-                                                            <a class="animate-top" title="Add To Cart" href="#">
-                                                                <i class="pe-7s-cart"></i>
-                                                            </a>
-                                                            <a class="animate-right" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
-                                                                <i class="pe-7s-look"></i>
-                                                            </a>
+                                                            <form id="productform" action="{{route('sepet.ekle')}}" method="post">
+                                                                @csrf
+                                                                <div class="product-action">
+                                                                <!--
+                                                                    <a class="animate-left" title="Wishlist" href="#">
+                                                                        <i class="pe-7s-like"></i>
+                                                                    </a>
+                                                                    <a class="animate-right" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">
+                                                                        <i class="pe-7s-look"></i>
+                                                                    </a>
+                                                                -->
+                                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                                    <input type="hidden" name="size" value="{{$product->size}}">
+                                                                    <input type="hidden" name="qty" value="1">
+                                                                    <button class="btn btn-lg btn-dark" type="submit">
+                                                                        <i class="pe-7s-cart"></i> Add To Cart
+                                                                    </button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                     <div class="product-content">

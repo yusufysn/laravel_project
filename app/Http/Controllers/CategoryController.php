@@ -200,11 +200,3 @@ class CategoryController extends Controller
         return back()->withSuccess('Silme işlemi başarı ile gerçekleştirildi.');
     }
 }
-
-
-
-
-
-
-
-

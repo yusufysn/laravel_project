@@ -5,7 +5,7 @@
             <div class="header-bottom-wrapper">
                 <div class="logo-2 furniture-logo ptb-30">
                     <a href="index.html">
-                        <img src="assets/img/logo/2.png" alt="">
+                        <img src="{{asset('assets/img/logo/logo-10.png')}}" alt="">
                     </a>
                 </div>
                 <div class="menu-style-2 furniture-menu menu-hover">
@@ -33,19 +33,8 @@
 
                                 </ul>
                             </li>
-                            <li><a href="#">pages</a>
-                                <ul class="single-dropdown">
-                                    <li><a href="about-us.html">about us</a></li>
-                                    <li><a href="menu-list.html">menu list</a></li>
-                                    <li><a href="login.html">login</a></li>
-                                    <li><a href="register.html">register</a></li>
-                                    <li><a href="cart.html">cart page</a></li>
-                                    <li><a href="checkout.html">checkout</a></li>
-                                    <li><a href="wishlist.html">wishlist</a></li>
-                                    <li><a href="{{route('iletisim')}}">contact</a></li>
-                                </ul>
-                            </li>
                             <li><a href="{{route('product')}}">shop</a></li>
+                            <li><a href="{{route('iletisim')}}">contact</a></li>
                             <li><a href="blog.html">blog</a>
                                 <ul class="single-dropdown">
                                     <li><a href="blog.html">blog 3 colunm</a></li>
@@ -55,68 +44,55 @@
                                     <li><a href="blog-details-sidebar.html">blog details 2</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{route('iletisim')}}">contact</a></li>
+                            <li><a href="#">pages</a>
+                                <ul class="single-dropdown">
+                                    <li><a href="about-us.html">about us</a></li>
+                                    <li><a href="menu-list.html">menu list</a></li>
+                                    <li><a href="login.html">login</a></li>
+                                    <li><a href="register.html">register</a></li>
+                                    <li><a href="{{route('sepet')}}">cart page</a></li>
+                                    <li><a href="checkout.html">checkout</a></li>
+                                    <li><a href="wishlist.html">wishlist</a></li>
+                                    <li><a href="{{route('iletisim')}}">contact</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </nav>
                 </div>
                 <div class="header-cart">
-                    <a class="icon-cart-furniture" href="#">
+                    <a class="icon-cart-furniture" href="{{route('sepet')}}">
                         <i class="ti-shopping-cart"></i>
-                        <span class="shop-count-furniture green">02</span>
+                        <span class="shop-count-furniture green">{{session()->get('cart') ? count(session('cart')) : '0'}}</span>
                     </a>
-                    <ul class="cart-dropdown">
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/img/cart/1.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </div>
-                        </li>
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/img/cart/2.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </div>
-                        </li>
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/img/cart/3.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </div>
-                        </li>
-                        <li class="cart-space">
-                            <div class="cart-sub">
-                                <h4>Subtotal</h4>
-                            </div>
-                            <div class="cart-price">
-                                <h4>$240.00</h4>
-                            </div>
-                        </li>
-                        <li class="cart-btn-wrapper">
-                            <a class="cart-btn btn-hover" href="#">view cart</a>
-                            <a class="cart-btn btn-hover" href="#">checkout</a>
-                        </li>
-                    </ul>
+                    @if ($cartItem)
+                        <ul class="cart-dropdown">
+                            @foreach ($cartItem as $key => $cart)
+                                <li class="single-product-cart">
+                                    <div class="cart-img">
+                                        <a href="#"><img style="width: 5em" src="{{asset('img/product/'.'/'.$cart['image'])}}" alt=""></a>
+                                    </div>
+                                    <div class="cart-title">
+                                        <h5><a href="#"> {{$cart['name']}}</a></h5>
+                                        <h6><a href="#">{{$cart['color']??''}}</a></h6>
+                                        <span>${{$cart['price']}}</span>
+                                    </div>
+                                    <div class="cart-delete">
+                                        <form id="urunsil" action="{{route('sepet.sil')}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="product_id" value="{{$key}}">
+                                                <a href="javascript:$('#urunsil').submit();"><i class="ti-trash"></i></a>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endforeach
+                            <li class="cart-btn-wrapper">
+                                <a class="cart-btn btn-hover" href="{{route('sepet')}}">view cart</a>
+                                <a class="cart-btn btn-hover" href="#">checkout</a>
+                            </li>
+                        </ul>
+                    @else
+                    @endif
                 </div>
             </div>
             <div class="row">
@@ -145,7 +121,7 @@
                                         <li><a href="menu-list.html">menu list</a></li>
                                         <li><a href="login.html">login</a></li>
                                         <li><a href="register.html">register</a></li>
-                                        <li><a href="cart.html">cart page</a></li>
+                                        <li><a href="{{route('sepet')}}">cart page</a></li>
                                         <li><a href="checkout.html">checkout</a></li>
                                         <li><a href="wishlist.html">wishlist</a></li>
                                         <li><a href="{{route('iletisim')}}">contact</a></li>

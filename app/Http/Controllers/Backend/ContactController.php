@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contacts = Contact::paginate(10);
+        $contacts = Contact::paginate(8);
         return view('backend.pages.contact.index', compact('contacts'));
     }
     public function edit($id)
