@@ -27,7 +27,7 @@ use App\Http\Controllers\CartController;
 |
 */
 
-Route::get('/',[AdminController::class,'Dashboard'])->middleware(['auth'])->name('dashboard');
+//Route::get('/',[AdminController::class,'Dashboard'])->middleware(['auth'])->name('dashboard');
 Route::get('/dashboard',[AdminController::class,'Dashboard'])->middleware(['auth'])->name('dashboard');
 
 
@@ -62,7 +62,7 @@ Route::delete('product/categories/{property_id}',[ProductsController::class,"Rem
 
 
 Route::group(['middleware'=>'sitesetting'], function(){
-    Route::get('/home', [PageHomeController::class, 'index'])->name('anasayfa');
+    Route::get('/', [PageHomeController::class, 'index'])->name('anasayfa');
 
     Route::get('/contact', [PageController::class, 'contact'])->name('iletisim');
     Route::post('/contact/save', [AjaxController::class, 'iletisimkaydet'])->name('iletisim.kaydet');
@@ -72,7 +72,7 @@ Route::group(['middleware'=>'sitesetting'], function(){
 
     Route::get('/cart', [CartController::class, 'index'])->name('sepet');
     Route::post('/cart/add', [CartController::class, 'add'])->name('sepet.ekle');
-    Route::patch('/cart/update', [CartController::class, 'update'])->name('sepet.update');
+    Route::post('/cart/update', [CartController::class, 'update'])->name('sepet.update');
     Route::delete('/cart/remove', [CartController::class, 'remove'])->name('sepet.sil');
 });
 
@@ -90,6 +90,9 @@ Route::prefix('panel')->middleware(['auth','sitesetting','role:admin',])->group(
 
     Route::resource('/product', ProductsController::class)->except('destroy');
     Route::delete('/product/{id}', [ProductsController::class, 'destroy'])->name('product.destroy');
+
+    Route::resource('/user', UserController::class)->except('destroy');
+    Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('/contact/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');

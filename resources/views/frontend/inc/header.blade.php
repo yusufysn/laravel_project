@@ -11,8 +11,8 @@
                 <div class="menu-style-2 furniture-menu menu-hover">
                     <nav>
                         <ul>
-                            <li><a href="{{route('anasayfa')}}">home</a></li>
-                            <li><a href="#">categories</a>
+                            <li><a href="{{route('anasayfa')}}">anasayfa</a></li>
+                            <li><a href="#">kategoriler</a>
                                 <ul class="single-dropdown">
                                     @if (!empty($categories) && $categories->count() > 0)
                                         @foreach ($categories as $category)
@@ -33,8 +33,8 @@
 
                                 </ul>
                             </li>
-                            <li><a href="{{route('product')}}">shop</a></li>
-                            <li><a href="{{route('iletisim')}}">contact</a></li>
+                            <li><a href="{{route('product')}}">ürünler</a></li>
+                            <li><a href="{{route('iletisim')}}">iletişim</a></li>
                             <li><a href="blog.html">blog</a>
                                 <ul class="single-dropdown">
                                     <li><a href="blog.html">blog 3 colunm</a></li>
@@ -44,12 +44,12 @@
                                     <li><a href="blog-details-sidebar.html">blog details 2</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">pages</a>
+                            <li><a href="#">sayfalar</a>
                                 <ul class="single-dropdown">
                                     <li><a href="about-us.html">about us</a></li>
                                     <li><a href="menu-list.html">menu list</a></li>
-                                    <li><a href="login.html">login</a></li>
-                                    <li><a href="register.html">register</a></li>
+                                    <li><a href="{{route('login')}}">login</a></li>
+                                    <li><a href="{{route('register')}}">register</a></li>
                                     <li><a href="{{route('sepet')}}">cart page</a></li>
                                     <li><a href="checkout.html">checkout</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
@@ -87,7 +87,7 @@
                                 </li>
                             @endforeach
                             <li class="cart-btn-wrapper">
-                                <a class="cart-btn btn-hover" href="{{route('sepet')}}">view cart</a>
+                                <a class="cart-btn btn-hover" href="{{route('sepet')}}">sepeti görüntüle</a>
                                 <a class="cart-btn btn-hover" href="#">checkout</a>
                             </li>
                         </ul>
@@ -100,7 +100,7 @@
                     <div class="mobile-menu">
                         <nav id="mobile-menu-active">
                             <ul class="menu-overflow">
-                                <li><a href="#">HOME</a>
+                                <li><a href="#">ANASAYFA</a>
                                     <ul>
                                         <li><a href="index.html">Fashion</a></li>
                                         <li><a href="index-fashion-2.html">Fashion style 2</a></li>
@@ -115,19 +115,19 @@
                                         <li><a href="index-sports.html">sports</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">pages</a>
+                                <li><a href="#">sayfalar</a>
                                     <ul>
                                         <li><a href="about-us.html">about us</a></li>
                                         <li><a href="menu-list.html">menu list</a></li>
-                                        <li><a href="login.html">login</a></li>
-                                        <li><a href="register.html">register</a></li>
+                                        <li><a href="{{route('login')}}">login</a></li>
+                                        <li><a href="{{route('register')}}">register</a></li>
                                         <li><a href="{{route('sepet')}}">cart page</a></li>
                                         <li><a href="checkout.html">checkout</a></li>
                                         <li><a href="wishlist.html">wishlist</a></li>
                                         <li><a href="{{route('iletisim')}}">contact</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">shop</a>
+                                <li><a href="#">ürünler</a>
                                     <ul>
                                         <li><a href="shop-grid-2-col.html"> grid 2 column</a></li>
                                         <li><a href="shop-grid-3-col.html"> grid 3 column</a></li>
@@ -156,7 +156,7 @@
                                         <li><a href="blog-details-sidebar.html">blog details 2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{route('iletisim')}}"> Contact  </a></li>
+                                <li><a href="{{route('iletisim')}}"> İletişim  </a></li>
                             </ul>
                         </nav>
                     </div>
@@ -167,15 +167,45 @@
     <div class="header-bottom-furniture wrapper-padding-2 border-top-3">
         <div class="container-fluid">
             <div class="furniture-bottom-wrapper">
-                <div class="furniture-login">
-                    <ul>
-                        <li>Get Access: <a href="login.html">Login </a></li>
-                        <li><a href="register.html">Reg </a></li>
-                    </ul>
-                </div>
+
+                @if (Auth::check())
+                    <div class="menu-style-2 d-flex align-items-center furniture-menu menu-hover">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <i class="ti-user"></i>
+                                    <span>| {{\Illuminate\Support\Facades\Auth::user()->name}} </span>
+                                    <i class="ti-angle-down f-s-10"></i>
+                                    <ul class="single-dropdown">
+                                        @if (!empty(\Illuminate\Support\Facades\Auth::user()->role->name))
+                                            <li style="background-color: lightblue" class="mb-2 p-1"><a href="{{route('panel.index')}}">Admin Paneli</a></li>
+                                        @endif
+                                        <li><a href="#"><i class="ti-user"></i><span>  Profil</span></a></li>
+                                        <li><a href="#"><i class="ti-email"></i><span>   gelen kutusu</span></a></li>
+                                        <li><a href="#"><i class="ti-settings"></i><span>  ayarlar</span></a></li>
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <a class="" href="{{route('logout')}}" onclick="event.preventDefault();
+                                                this.closest('form').submit();"> <i class="ti-power-off"></i>  Çıkış Yap</a>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                @else
+                    <div class="furniture-login">
+                        <ul>
+                                <li><a href="{{route('login')}}">giriş yap</a></li>
+                                <li><a href="{{route('register')}}">hesap oluştur </a></li>
+                        </ul>
+                    </div>
+                @endif
                 <div class="furniture-search">
                     <form action="#">
-                        <input placeholder="I am Searching for . . ." type="text">
+                        <input placeholder="Ara . . ." type="text">
                         <button>
                             <i class="ti-search"></i>
                         </button>

@@ -51,6 +51,11 @@ class CartController extends Controller
             $cart[$request->productId]["qty"] = $request->qty;
             session()->put('cart', $cart);
             session()->flash('success', 'Sepet Başarıyla Güncellendi!');
+
+            if($request->ajax()){
+                return response()->json(['Sepete Güncellendi']);
+            }
+
             return back();
         }
     }

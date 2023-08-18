@@ -4,10 +4,10 @@
 <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
     <div class="container">
         <div class="breadcrumb-content text-center">
-            <h2>cart page</h2>
+            <h2>sepet sayfası</h2>
             <ul>
-                <li><a href="#">home</a></li>
-                <li> cart page</li>
+                <li><a href="#">anasayfa</a></li>
+                <li> sepet sayfası</li>
             </ul>
         </div>
     </div>
@@ -22,23 +22,24 @@
                 @endif
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h1 class="cart-heading">Cart</h1>
+                <h1 class="cart-heading">Sepet</h1>
                     <div class="table-content table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>remove</th>
-                                    <th>images</th>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th>kaldır</th>
+                                    <th>resim</th>
+                                    <th>ürün</th>
+                                    <th>fiyat</th>
+                                    <th>fiyat</th>
+                                    <th>adet</th>
+                                    <th>toplam</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if ($cartItem)
                                     @foreach ($cartItem as $key => $cart)
-                                        <tr>
+                                        <tr class="orderItem" data-id="{{$key}}">
                                             <td class="product-remove">
                                                 <form id="urunsil" action="{{route('sepet.sil')}}" method="post">
                                                     @csrf
@@ -65,7 +66,24 @@
                                                       </div>
                                                 </form>
                                             </td>
+                                            <td class="product-quantity">
+                                                <input class="qtyItem" id="quantityInput" name="qty" value="{{$cart['qty']}}" min="1" type="text" style="width:4em">
+                                                <button class="btn btn-outline-secondary increaseBtn"  type="submit" style="height:40px">+</button>
+                                            </td>
                                             <td class="product-subtotal">${{number_format($cart['price'] * $cart['qty'],2)}}</td>
+
+
+                                            <td class="cart-product-quantity" width="130px">
+                                                <div class="input-group quantity">
+                                                    <div class="input-group-prepend decrement-btn" style="cursor: pointer">
+                                                        <span class="input-group-text">-</span>
+                                                    </div>
+                                                    <input type="text" class="qty-input form-control" maxlength="2" max="10" value="1">
+                                                    <div class="input-group-append increment-btn" style="cursor: pointer">
+                                                        <span class="input-group-text">+</span>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -82,11 +100,11 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="coupon-all">
                                 <div class="coupon">
-                                    <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
-<input class="button" name="apply_coupon" value="Apply coupon" type="submit">
+                                    <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Kupon Kodu" type="text">
+                                    <input class="button" name="apply_coupon" value="Kuponu Onayla" type="submit">
                                 </div>
                                 <div class="coupon2">
-                                    <input class="button" name="update_cart" value="Update cart" type="submit">
+                                    <input class="button" name="update_cart" value="Sepeti Güncelle" type="submit">
                                 </div>
                             </div>
                         </div>
@@ -94,12 +112,12 @@
                     <div class="row">
                         <div class="col-md-5 ms-auto">
                             <div class="cart-page-total">
-                                <h2>Cart totals</h2>
+                                <h2>Sepet Toplamı</h2>
                                 <ul>
-                                    <li>Subtotal<span>${{number_format($totalPrice,2)}}</span></li>
-                                    <li>Total<span>${{number_format($totalPrice,2)}}</span></li>
+                                    <li>İndirimsiz Toplam<span>${{number_format($totalPrice,2)}}</span></li>
+                                    <li>Toplam<span>${{number_format($totalPrice,2)}}</span></li>
                                 </ul>
-                                <a href="#">Proceed to checkout</a>
+                                <a href="#">Onayla</a>
                             </div>
                         </div>
                     </div>
@@ -107,5 +125,60 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+    function sepeteUpdate(){
+        var product_id = $('.selected').closest('.orderItem').attr('data-id');
+        var qty = $('.selected').closest('.orderItem').find('.qtyItem').val();
+                console.log(product_id);
+                console.log(qty);
+    }
+
+    $(document).on('click', '.increaseBtn', function(e) {
+        $('.orderItem').removeClass('selected');
+        $(this).closest('.orderItem').addClass('selected');
+        sepeteUpdate();
+
+
+        $('.increment-btn').click(function (e) {
+            e.preventDefault();
+            var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var value = parseInt(incre_value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value<10){
+                value++;
+                $(this).parents('.quantity').find('.qty-input').val(value);
+            }
+            $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: "POST",
+            url: "{{route('sepet.update')}}",
+            data: {
+                productId:product_id,
+                qty:value,
+            },
+            success: function(response) {
+                console.log(response);
+            }
+        });
+
+        });
+
+        $('.decrement-btn').click(function (e) {
+            e.preventDefault();
+            var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var value = parseInt(decre_value, 10);
+            value = isNaN(value) ? 0 : value;
+            if(value>1){
+                value--;
+                $(this).parents('.quantity').find('.qty-input').val(value);
+            }
+        });
+    });
+</script>
 @endsection
 

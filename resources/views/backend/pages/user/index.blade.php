@@ -4,7 +4,6 @@
 <div class="main">
     <div class="container-fluid">
         <div class="row">
-            <!-- /# column -->
             <div class="col-lg-12 p-l-0 title-margin-left">
                 <div class="page-header">
                     <div class="page-title">
@@ -23,7 +22,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-title">
-                            <h4>İletişim Paneli</h4>
+                            <h4>Kullanıcı Paneli</h4>
+                            <p class="card-description">
+                                <a href="{{route('user.create')}}" class="btn btn-primary">Kullanıcı Ekle</a>
+                            </p>
                             @if (session()->has('success'))
                                 <div class="alert alert-success">
                                     {{session()->get('success')}}
@@ -35,47 +37,38 @@
                                 <table class="table table-hover ">
                                     <thead>
                                         <tr>
-                                            <th>Gönderen</th>
-                                            <th>Konu</th>
-                                            <th>Email</th>
-                                            <th>Telefon</th>
-                                            <th>Mesaj</th>
-                                            <th>IP</th>
-                                            <th>Durum</th>
+                                            <th>Kullanıcı Adı</th>
+                                            <th>Kullanıcı Mail Adresi</th>
+                                            <th>Kullanıcı Rolü</th>
                                             <th class="d-flex">Düzenle</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (!empty($contacts) && $contacts->count() > 0)
-                                            @foreach ($contacts as $contact)
+                                        @if (!empty($users) && $users->count() > 0)
+                                            @foreach ($users as $user)
                                                 <tr>
-                                                    <td>{{$contact->name}}</td>
-                                                    <td><span>{{$contact->subject}}</span></td>
-                                                    <td>{{$contact->email}}</td>
-                                                    <td>{{$contact->phone}}</td>
-                                                    <td>{{$contact->message}}</td>
-                                                    <td>{{$contact->ip}}</td>
-                                                    <td class="color-primary">
-                                                        <label class="badge badge-{{$contact->status == '1' ? 'success' : 'danger'}}">{{$contact->status == '1' ? 'Aktif' : 'Pasif'}}</label>
-                                                    </td>
+                                                    <td>{{$user->name}}</td>
+                                                    <td>{{$user->email}}</td>
+                                                    <td>{{$user->role_id=='1' ? 'admin' : 'user'}}</td>
                                                     <td class="d-flex">
-                                                        <a href="{{route('contact.edit', $contact->id)}}" class="btn btn-primary mr-2">Düzenle</a>
-                                                        <form action="{{route('contact.destroy',$contact->id)}}" method="post">
+                                                        <a href="{{route('user.edit', $user->id)}}" class="btn btn-primary mr-2">Düzenle</a>
+                                                        <form action="{{route('user.destroy',$user->id)}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger">Sil</button>
                                                         </form>
                                                     </td>
-
                                                 </tr>
                                             @endforeach
                                         @endif
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-                        <div class="row">
-                            {{$contacts->links('pagination::bootstrap-4')}}
+
+                            <div class="row">
+                                {{$users->links('pagination::bootstrap-4')}}
+                            </div>
+
                         </div>
                     </div>
                     <!-- /# card -->

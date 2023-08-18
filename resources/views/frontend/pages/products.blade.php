@@ -4,10 +4,10 @@
 <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
-            <h2> shop grid</h2>
+            <h2> ürünler</h2>
             <ul>
-                <li><a href="#">home</a></li>
-                <li>shop grid</li>
+                <li><a href="#">anasayfa</a></li>
+                <li>ürünler</li>
             </ul>
         </div>
     </div>
@@ -18,7 +18,7 @@
             <div class="col-lg-3 order-2 order-lg-1">
                 <div class="shop-sidebar mr-50">
                     <div class="sidebar-widget mb-50">
-                        <h3 class="sidebar-title">Search Products</h3>
+                        <h3 class="sidebar-title">Ürün Ara</h3>
                         <div class="sidebar-search">
                             <form action="#">
                                 <input placeholder="Search Products..." type="text">
@@ -27,20 +27,20 @@
                         </div>
                     </div>
                     <div class="sidebar-widget mb-40">
-                        <h3 class="sidebar-title">Filter by Price</h3>
+                        <h3 class="sidebar-title">Fiyata Göre Filtrele</h3>
                         <div class="price_filter">
                             <div id="slider-range"></div>
                             <div class="price_slider_amount">
                                 <div class="label-input">
-                                    <label>price : </label>
+                                    <label>fiyat : </label>
                                     <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
                                 </div>
-                                <button type="button">Filter</button>
+                                <button type="button">Filtre</button>
                             </div>
                         </div>
                     </div>
                     <div class="sidebar-widget mb-45">
-                        <h3 class="sidebar-title">Categories</h3>
+                        <h3 class="sidebar-title">Kategoriler</h3>
                         <div class="sidebar-categories">
                             <ul>
                                 @if (!empty($categories) && $categories->count() > 0)
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="sidebar-widget sidebar-overflow mb-45">
-                        <h3 class="sidebar-title">color</h3>
+                        <h3 class="sidebar-title">renk</h3>
                         <div class="product-color">
                             <ul>
                                 <li class="red">b</li>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="sidebar-widget mb-40">
-                        <h3 class="sidebar-title">size</h3>
+                        <h3 class="sidebar-title">beden</h3>
                         <div class="product-size">
                             <ul>
                                 @if (!empty($sizelist))
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="sidebar-widget mb-40">
-                        <h3 class="sidebar-title">tag</h3>
+                        <h3 class="sidebar-title">etiket</h3>
                         <div class="product-tags">
                             <ul>
                                 <li><a href="#">Clothing</a></li>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="sidebar-widget mb-50">
-                        <h3 class="sidebar-title">Top rated products</h3>
+                        <h3 class="sidebar-title">En Popüler Ürünler</h3>
                         <div class="sidebar-top-rated-all">
                             <div class="sidebar-top-rated mb-30">
                                 <div class="single-top-rated">
@@ -181,15 +181,15 @@
                         <div class="shop-bar pb-60">
                             <div class="shop-found-selector">
                                 <div class="shop-found">
-                                    <p><span>23</span> Product Found of <span>50</span></p>
+                                    <p><span>23</span> Ürün Bulundu</p>
                                 </div>
                                 <div class="shop-selector">
-                                    <label>Sort By : </label>
+                                    <label>Listele : </label>
                                     <select name="select">
-                                        <option value="">Default</option>
-                                        <option value="">A to Z</option>
-                                        <option value=""> Z to A</option>
-                                        <option value="">In stock</option>
+                                        <option value="">Varsayılan</option>
+                                        <option value="">A'dan Z'ye</option>
+                                        <option value=""> Z'den A'ya</option>
+                                        <option value="">Stokta Olan</option>
                                     </select>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                                                                     <input type="hidden" name="size" value="{{$product->size}}">
                                                                     <input type="hidden" name="qty" value="1">
                                                                     <button class="btn btn-lg btn-dark" type="submit">
-                                                                        <i class="pe-7s-cart"></i> Add To Cart
+                                                                        <i class="pe-7s-cart"></i> Sepete Ekle
                                                                     </button>
                                                                 </div>
                                                             </form>
@@ -275,7 +275,7 @@
                                                         </div>
                                                         <div class="product-list-cart-wishlist">
                                                             <div class="product-list-cart">
-                                                                <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                                <a class="btn-hover list-btn-style" href="#">sepete ekle</a>
                                                             </div>
                                                             <div class="product-list-wishlist">
                                                                 <a class="btn-hover list-btn-wishlist" href="#">
@@ -312,7 +312,7 @@
                                                 </div>
                                                 <div class="product-list-cart-wishlist">
                                                     <div class="product-list-cart">
-                                                        <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                        <a class="btn-hover list-btn-style" href="#">sepete ekle</a>
                                                     </div>
                                                     <div class="product-list-wishlist">
                                                         <a class="btn-hover list-btn-wishlist" href="#">
@@ -343,7 +343,7 @@
                                                 </div>
                                                 <div class="product-list-cart-wishlist">
                                                     <div class="product-list-cart">
-                                                        <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                        <a class="btn-hover list-btn-style" href="#">sepete ekle</a>
                                                     </div>
                                                     <div class="product-list-wishlist">
                                                         <a class="btn-hover list-btn-wishlist" href="#">
@@ -374,7 +374,7 @@
                                                 </div>
                                                 <div class="product-list-cart-wishlist">
                                                     <div class="product-list-cart">
-                                                        <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                        <a class="btn-hover list-btn-style" href="#">sepete ekle</a>
                                                     </div>
                                                     <div class="product-list-wishlist">
                                                         <a class="btn-hover list-btn-wishlist" href="#">
@@ -406,7 +406,7 @@
                                                 </div>
                                                 <div class="product-list-cart-wishlist">
                                                     <div class="product-list-cart">
-                                                        <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                        <a class="btn-hover list-btn-style" href="#">sepete ekle</a>
                                                     </div>
                                                     <div class="product-list-wishlist">
                                                         <a class="btn-hover list-btn-wishlist" href="#">
@@ -438,7 +438,7 @@
                                                 </div>
                                                 <div class="product-list-cart-wishlist">
                                                     <div class="product-list-cart">
-                                                        <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                        <a class="btn-hover list-btn-style" href="#">sepete ekle</a>
                                                     </div>
                                                     <div class="product-list-wishlist">
                                                         <a class="btn-hover list-btn-wishlist" href="#">
@@ -469,7 +469,7 @@
                                                 </div>
                                                 <div class="product-list-cart-wishlist">
                                                     <div class="product-list-cart">
-                                                        <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                        <a class="btn-hover list-btn-style" href="#">sepete ekle</a>
                                                     </div>
                                                     <div class="product-list-wishlist">
                                                         <a class="btn-hover list-btn-wishlist" href="#">

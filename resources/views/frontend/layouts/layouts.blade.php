@@ -6,8 +6,11 @@
         <title>Furniture - eCommerce HTML5 Template</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
+        <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 
 		<!-- all css here -->
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -21,6 +24,8 @@
         <link rel="stylesheet" href="{{asset('assets/css/bundle.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+        <link href="{{asset('/admintema/css/lib/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{asset('/admintema/css/lib/themify-icons.css')}}" rel="stylesheet">
         <script src="{{asset('assets/js/vendor/modernizr-3.11.7.min.js')}}"></script>
     </head>
     <body>
@@ -220,7 +225,6 @@
 
         @yield('js')
 		<!-- all js here -->
-        <script src="{{asset('assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
         <script src="{{asset('assets/js/popper.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
@@ -232,5 +236,7 @@
         <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
         <script src="{{asset('assets/js/plugins.js')}}"></script>
         <script src="{{asset('assets/js/main.js')}}"></script>
+        <script src="{{asset('admintema/js/lib/bootstrap.min.js')}}"></script>
+        <script src="{{asset('admintema/js/lib/bootstrap.min.js.map')}}"></script>
     </body>
 </html>

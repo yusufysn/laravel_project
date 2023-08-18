@@ -31,6 +31,14 @@
                     </ul>
                 </li>
 
+                <li><a class="sidebar-sub-toggle"><i class="ti-user"></i> Profil <span
+                            class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="{{route('user.index')}}">Kullanıcılar</a></li>
+                        <li><a href="{{route('user.create')}}">Kullanıcı Ekle</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="{{route('contact.index')}}"><i class="ti-email"></i> Mesajlar</a></li>
 
 

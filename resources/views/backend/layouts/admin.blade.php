@@ -40,7 +40,7 @@
     <div class="content-wrap">
         @yield('content')
     </div>
-    
+
 
     <!-- jquery vendor -->
     <script src="{{asset('admintema/js/lib/jquery.min.js')}}"></script>
@@ -70,6 +70,7 @@
     <script src="{{asset('admintema/js/lib/owl-carousel/owl.carousel-init.js')}}"></script>
     <!-- scripit init-->
     <script src="{{asset('admintema/js/dashboard2.js')}}"></script>
+    @yield('js')
 </body>
 
 </html>

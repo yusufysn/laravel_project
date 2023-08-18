@@ -15,7 +15,7 @@
                                     <div class="furniture-content fadeinup-animated">
                                         <h2 class="animated">{{$s->name ?? __('Merhaba')}}</h2>
                                         <p class="animated">{{$s->content ?? 'slider bulunamadı'}}</p>
-                                        <a class="furniture-slider-btn btn-hover animated" href="{{url('/').'/'.$s->link}}">Shop Now</a>
+                                        <a class="furniture-slider-btn btn-hover animated" href="{{url('/').'/'.$s->link}}">Alışverişe Başla</a>
                                     </div>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
 <div class="popular-product-area wrapper-padding-3 pt-115 pb-115">
     <div class="container-fluid">
         <div class="section-title-6 text-center mb-50">
-            <h2>Popular Product</h2>
+            <h2>Popüler Ürünler</h2>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
         </div>
         <div class="product-style">
@@ -182,11 +182,11 @@
             </div>
             <div class="col-lg-5">
                 <div class="discount-details-wrapper">
-                    <h5>Verified quality</h5>
+                    <h5>Onaylanmış kalite</h5>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <h2>Summer Discount <br>Up to 30%</h2>
+                    <h2>%30'a Varan <br>Yaz İndirimi</h2>
                     <p class="discount-peragraph">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <a class="discount-btn btn-hover" href="product-details.html">Buy Now</a>
+                    <a class="discount-btn btn-hover" href="product-details.html">Şimdi Satın Al</a>
                 </div>
             </div>
         </div>
@@ -199,8 +199,8 @@
         <div class="discount-wrapper">
             <img src="assets/img/banner/29.jpg" alt="">
             <div class="discount-content">
-                <h2>Premium  Home <br>Decorator</h2>
-                <a href="#">Learn More</a>
+                <h2>Premium  Ev <br>Dekoratörü</h2>
+                <a href="#">Daha Fazla Öğren</a>
             </div>
         </div>
     </div>
@@ -210,12 +210,12 @@
 <div class="product-style-area pt-120">
     <div class="coustom-container-fluid">
         <div class="section-title-7 text-center">
-            <h2>All Products</h2>
+            <h2>Tüm Ürünler</h2>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text</p>
         </div>
         <div class="product-tab-list text-center mb-65 nav" role="tablist">
             <a class="active" href="#furniture1" data-bs-toggle="tab" role="tab">
-                <h4>Home </h4>
+                <h4>Ev </h4>
             </a>
             <a href="#furniture2" data-bs-toggle="tab" role="tab">
                 <h4>Chair </h4>
@@ -1803,27 +1803,11 @@
             </div>
         </div>
         <div class="view-all-product text-center">
-            <a href="shop.html">View All Product</a>
+            <a href="shop.html">Tüm Ürünleri Görüntüle</a>
         </div>
     </div>
 </div>
 <!-- product area end -->
-<!-- testimonials area start -->
-<div class="testimonials-area pt-120 pb-115">
-    <div class="container">
-        <div class="testimonials-active owl-carousel">
-            <div class="single-testimonial-2 text-center">
-                <img src="assets/img/team/1.png" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                <img src="assets/img/team/2.png" alt="">
-                <h4>tayeb rayed</h4>
-                <span>uiux Designer</span>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- testimonials area end -->
 <!-- services area start -->
 <div class="services-area wrapper-padding-4 gray-bg pt-120 pb-80">
     <div class="container-fluid">
@@ -1833,7 +1817,7 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
                     <img src="assets/img/icon-img/26.png" alt="">
                 </div>
                 <div class="services-content">
-                    <h4>Free Shippig</h4>
+                    <h4>Ücretsiz Kargo</h4>
                     <p>Contrary to popular belief, Lorem Ipsum is random text. </p>
                 </div>
             </div>
@@ -1842,7 +1826,7 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
                     <img src="assets/img/icon-img/27.png" alt="">
                 </div>
                 <div class="services-content">
-                    <h4>24/7 Support</h4>
+                    <h4>24/7 Hizmet</h4>
                     <p>Contrary to popular belief, Lorem Ipsum is random text. </p>
                 </div>
             </div>
@@ -1851,7 +1835,7 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
                     <img src="assets/img/icon-img/28.png" alt="">
                 </div>
                 <div class="services-content">
-                    <h4>Secure Payments</h4>
+                    <h4>Güvenli Ödeme</h4>
                     <p>Contrary to popular belief, Lorem Ipsum is random text. </p>
                 </div>
             </div>
