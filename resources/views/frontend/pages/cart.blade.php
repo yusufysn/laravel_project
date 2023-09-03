@@ -53,6 +53,7 @@
                                             </td>
                                             <td class="product-name"><a href="#">{{$cart['name']}}</a></td>
                                             <td class="product-price-cart"><span class="amount">${{number_format($cart['price'],2)}}</span></td>
+<!--
                                             <td class="product-quantity">
                                                 <form action="{{route('sepet.update')}}" method="POST">
                                                     @csrf
@@ -66,13 +67,15 @@
                                                       </div>
                                                 </form>
                                             </td>
+-->
                                             <td class="product-quantity">
+                                                <button class="btn btn-outline-secondary decreaseBtn"  type="submit" style="height:40px">-</button>
                                                 <input class="qtyItem" id="quantityInput" name="qty" value="{{$cart['qty']}}" min="1" type="text" style="width:4em">
                                                 <button class="btn btn-outline-secondary increaseBtn"  type="submit" style="height:40px">+</button>
                                             </td>
                                             <td class="product-subtotal">${{number_format($cart['price'] * $cart['qty'],2)}}</td>
 
-
+<!--
                                             <td class="cart-product-quantity" width="130px">
                                                 <div class="input-group quantity">
                                                     <div class="input-group-prepend decrement-btn" style="cursor: pointer">
@@ -84,6 +87,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+-->
                                         </tr>
                                     @endforeach
                                 @else
@@ -132,51 +136,58 @@
     function sepeteUpdate(){
         var product_id = $('.selected').closest('.orderItem').attr('data-id');
         var qty = $('.selected').closest('.orderItem').find('.qtyItem').val();
-                console.log(product_id);
-                console.log(qty);
+        qty++;
+        $('.selected').closest('.orderItem').find('.qtyItem').val(qty);
+                //console.log(product_id);
+                //console.log(qty);
+
+        $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: "{{route('sepet.update')}}",
+        data: {
+            product_id:product_id,
+            qty:qty,
+        },
+        success: function(response) {
+            //console.log(response);
+            window.location.reload();
+        }
+        });
     }
 
     $(document).on('click', '.increaseBtn', function(e) {
         $('.orderItem').removeClass('selected');
         $(this).closest('.orderItem').addClass('selected');
         sepeteUpdate();
+    });
+    $(document).on('click', '.decreaseBtn', function(e) {
+        $('.orderItem').removeClass('selected');
+        $(this).closest('.orderItem').addClass('selected');
+        var product_id = $('.selected').closest('.orderItem').attr('data-id');
+        var qty = $('.selected').closest('.orderItem').find('.qtyItem').val();
+        if(qty>0)
+            qty--;
+        $('.selected').closest('.orderItem').find('.qtyItem').val(qty);
+                //console.log(product_id);
+                //console.log(qty);
 
-
-        $('.increment-btn').click(function (e) {
-            e.preventDefault();
-            var incre_value = $(this).parents('.quantity').find('.qty-input').val();
-            var value = parseInt(incre_value, 10);
-            value = isNaN(value) ? 0 : value;
-            if(value<10){
-                value++;
-                $(this).parents('.quantity').find('.qty-input').val(value);
-            }
-            $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "POST",
-            url: "{{route('sepet.update')}}",
-            data: {
-                productId:product_id,
-                qty:value,
-            },
-            success: function(response) {
-                console.log(response);
-            }
-        });
-
-        });
-
-        $('.decrement-btn').click(function (e) {
-            e.preventDefault();
-            var decre_value = $(this).parents('.quantity').find('.qty-input').val();
-            var value = parseInt(decre_value, 10);
-            value = isNaN(value) ? 0 : value;
-            if(value>1){
-                value--;
-                $(this).parents('.quantity').find('.qty-input').val(value);
-            }
+        $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        url: "{{route('sepet.update')}}",
+        data: {
+            product_id:product_id,
+            qty:qty,
+        },
+        success: function(response) {
+            //console.log(response);
+            window.location.reload();
+        }
         });
     });
 </script>

@@ -46,18 +46,50 @@ class CartController extends Controller
 
     public function update(Request $request)
     {
-        if($request->productId && $request->qty){
+
+        $productId = $request->product_id;
+        $qty = $request->qty;
+        $size = $request->size;
+        $urun = Product::find($productId);
+        if(!$urun){
+            return response()->json('Ürün Bulunamadı');
+        }
+        $cartItem = session('cart',[]);
+
+        if(array_key_exists($productId, $cartItem)){
+            $cartItem[$productId]['qty'] = $qty;
+            if($qty == 0 || $qty < 0){
+                unset($cartItem[$productId]);
+            }
+        }else{
+            $cartItem[$productId] = [
+                'image'=>$urun->image,
+                'name'=>$urun->name,
+                'color'=>$urun->color,
+                'price'=>$urun->price,
+                'qty'=>$qty,
+                'size'=>$size,
+            ];
+        }
+        session(['cart'=>$cartItem]);
+        if($request->ajax()){
+            session()->flash('success', 'Sepet Başarıyla Güncellendi!');
+            return response()->json('Sepet Güncellendi');
+        }
+
+        return back();
+        /* if($request->product_id && $request->qty){
             $cart = session()->get('cart');
-            $cart[$request->productId]["qty"] = $request->qty;
+            $cart[$request->product_id]["qty"] = $request->qty;
             session()->put('cart', $cart);
             session()->flash('success', 'Sepet Başarıyla Güncellendi!');
 
             if($request->ajax()){
-                return response()->json(['Sepete Güncellendi']);
+                return response()->json(['Sepet Güncellendi']);
             }
 
             return back();
-        }
+        } */
     }
 
     public function remove(Request $request){
